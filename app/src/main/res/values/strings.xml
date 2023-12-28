@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Memoir Stats</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="base_fragment_label">Memoir 44 stats</string>
+    <string name="scenario_fragment_label">Scenario details</string>
+    <string name="roll_fragment_label">Roll details</string>
+    <string name="scenario">New scenario</string>
+    <string name="attacker_roll">Add attacker roll</string>
+    <string name="defender_roll">Add defender roll</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="how_many_dice">How many dice?</string>
+    <string name="how_many_hits">How many hits?</string>
+    <string name="save">Save</string>
+    <string name="hits">Hits</string>
+</resources>

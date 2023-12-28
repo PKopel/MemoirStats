@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/BaseFragment">
+
+    <fragment
+        android:id="@+id/BaseFragment"
+        android:name="com.example.memoirstats.BaseFragment"
+        android:label="@string/base_fragment_label"
+        tools:layout="@layout/fragment_base">
+        <action
+            android:id="@+id/action_BaseFragment_to_ScenarioFragment"
+            app:destination="@id/ScenarioFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ScenarioFragment"
+        android:name="com.example.memoirstats.ScenarioFragment"
+        android:label="@string/scenario_fragment_label"
+        tools:layout="@layout/fragment_scenario">
+        <action
+            android:id="@+id/action_ScenarioFragment_to_RollFragment"
+            app:destination="@id/RollFragment" />
+        <action
+            android:id="@+id/action_ScenarioFragment_to_BaseFragment"
+            app:destination="@id/BaseFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/RollFragment"
+        android:name="com.example.memoirstats.RollFragment"
+        android:label="@string/roll_fragment_label"
+        tools:layout="@layout/fragment_roll" >
+        <action
+            android:id="@+id/action_RollFragment_to_ScenarioFragment"
+            app:destination="@id/ScenarioFragment" />
+    </fragment>
+</navigation>

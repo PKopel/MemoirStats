@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.memoirstats.model.MemoirViewModel"/>
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ScenarioFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <Button
+                android:id="@+id/button_attacker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/attacker_roll"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/button_defender"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/infantryImageView"/>
+
+            <Button
+                android:id="@+id/button_defender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/defender_roll"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/infantryImageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/button_attacker"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                style="@style/Style.App.roundedImageView"
+                android:id="@+id/infantryImageView"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/button_attacker"
+                app:layout_constraintBottom_toTopOf="@+id/tankImageView"
+                app:layout_constraintEnd_toStartOf="@+id/infantryTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/infantry" />
+
+            <TextView
+                android:id="@+id/infantryTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{Integer.toString(viewModel.getCurrentInfantries())}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintBottom_toTopOf="@+id/tankImageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/infantryImageView"
+                app:layout_constraintTop_toBottomOf="@+id/button_attacker" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                style="@style/Style.App.roundedImageView"
+                android:id="@+id/tankImageView"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/infantryImageView"
+                app:layout_constraintBottom_toTopOf="@+id/grenadeImageView"
+                app:layout_constraintEnd_toStartOf="@+id/tankTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/tank" />
+
+            <TextView
+                android:id="@+id/tankTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{Integer.toString(viewModel.getCurrentTanks())}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintBottom_toTopOf="@+id/grenadeImageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tankImageView"
+                app:layout_constraintTop_toBottomOf="@+id/infantryImageView" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                style="@style/Style.App.roundedImageView"
+                android:id="@+id/grenadeImageView"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/tankImageView"
+                app:layout_constraintBottom_toTopOf="@+id/flagImageView"
+                app:layout_constraintEnd_toStartOf="@+id/grenadeTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/grenade" />
+
+            <TextView
+                android:id="@+id/grenadeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{Integer.toString(viewModel.getCurrentGrenades())}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintBottom_toTopOf="@+id/flagImageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/grenadeImageView"
+                app:layout_constraintTop_toBottomOf="@+id/tankImageView" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                style="@style/Style.App.roundedImageView"
+                android:id="@+id/flagImageView"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/grenadeImageView"
+                app:layout_constraintBottom_toTopOf="@+id/starImageView"
+                app:layout_constraintEnd_toStartOf="@+id/flagTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/flag" />
+
+            <TextView
+                android:id="@+id/flagTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{Integer.toString(viewModel.getCurrentFlags())}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintBottom_toTopOf="@+id/starImageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/flagImageView"
+                app:layout_constraintTop_toBottomOf="@+id/grenadeImageView" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                style="@style/Style.App.roundedImageView"
+                android:id="@+id/starImageView"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/flagImageView"
+                app:layout_constraintBottom_toTopOf="@+id/hitsLabelTextView"
+                app:layout_constraintEnd_toStartOf="@+id/starTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/star" />
+
+            <TextView
+                android:id="@+id/starTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{Integer.toString(viewModel.getCurrentStars())}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintBottom_toTopOf="@+id/hitsLabelTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/starImageView"
+                app:layout_constraintTop_toBottomOf="@+id/flagImageView" />
+
+            <TextView
+                android:id="@+id/hitsLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hits"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/hitsTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/starImageView" />
+
+            <TextView
+                android:id="@+id/hitsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{Integer.toString(viewModel.getCurrentHits())}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/hitsLabelTextView"
+                app:layout_constraintTop_toBottomOf="@+id/starImageView" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>
