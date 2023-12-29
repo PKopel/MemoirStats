@@ -56,13 +56,20 @@
 
         <TableRow android:layout_marginBottom="10dp">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/infantryImageView"
-                style="@style/Style.App.roundedImageView"
+
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                app:srcCompat="@drawable/infantry" />
+                android:orientation="horizontal">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/infantryImageView"
+                    style="@style/Style.App.roundedImageView"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:srcCompat="@drawable/infantry" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/infantryTotalTextView"
@@ -92,13 +99,21 @@
 
         <TableRow android:layout_marginBottom="10dp">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/tankImageView"
-                style="@style/Style.App.roundedImageView"
+
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                app:srcCompat="@drawable/tank" />
+                android:orientation="horizontal">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/tankImageView"
+                    style="@style/Style.App.roundedImageView"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    app:srcCompat="@drawable/tank" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tankTotalTextView"
@@ -127,13 +142,21 @@
 
         <TableRow android:layout_marginBottom="10dp">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/grenadeImageView"
-                style="@style/Style.App.roundedImageView"
+
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                app:srcCompat="@drawable/grenade" />
+                android:orientation="horizontal">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/grenadeImageView"
+                    style="@style/Style.App.roundedImageView"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    app:srcCompat="@drawable/grenade" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/grenadeTextView"
@@ -162,13 +185,21 @@
 
         <TableRow android:layout_marginBottom="10dp">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/flagImageView"
-                style="@style/Style.App.roundedImageView"
+
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                app:srcCompat="@drawable/flag" />
+                android:orientation="horizontal">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/flagImageView"
+                    style="@style/Style.App.roundedImageView"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    app:srcCompat="@drawable/flag" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/flagTextView"
@@ -197,13 +228,21 @@
 
         <TableRow android:layout_marginBottom="10dp">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/starImageView"
-                style="@style/Style.App.roundedImageView"
+
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                app:srcCompat="@drawable/star" />
+                android:orientation="horizontal">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/starImageView"
+                    style="@style/Style.App.roundedImageView"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    app:srcCompat="@drawable/star" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/starTextView"

@@ -5,7 +5,7 @@
     <string name="base_fragment_label">Memoir 44 stats</string>
     <string name="scenario_fragment_label">Scenario details</string>
     <string name="roll_fragment_label">Roll details</string>
-    <string name="scenario">New scenario</string>
+    <string name="new_scenario">New scenario</string>
     <string name="attacker_roll">Add attacker roll</string>
     <string name="defender_roll">Add defender roll</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -17,4 +17,8 @@
     <string name="totalLabel">Total</string>
     <string name="attackerLabel">Attacker</string>
     <string name="defenderLabel">Defender</string>
+    <string name="scenario_name">Scenario name</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="add_new_scenario">Add new scenario</string>
 </resources>
