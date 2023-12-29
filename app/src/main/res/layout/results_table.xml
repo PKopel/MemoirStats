@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="total"
+            type="com.example.memoirstats.model.view.ResultViewModel" />
+
+        <variable
+            name="attacker"
+            type="com.example.memoirstats.model.view.ResultViewModel" />
+
+        <variable
+            name="defender"
+            type="com.example.memoirstats.model.view.ResultViewModel" />
+    </data>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="*">
+
+        <TableRow android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/diceSideLabel"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/totalLabel"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/attackerLabel"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/defenderLabel"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="10dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/infantryImageView"
+                style="@style/Style.App.roundedImageView"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                app:srcCompat="@drawable/infantry" />
+
+            <TextView
+                android:id="@+id/infantryTotalTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{total.infantries}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <TextView
+                android:id="@+id/infantryAttackerTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{attacker.infantries}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <TextView
+                android:id="@+id/infantryDefenderTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{defender.infantries}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="10dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/tankImageView"
+                style="@style/Style.App.roundedImageView"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                app:srcCompat="@drawable/tank" />
+
+            <TextView
+                android:id="@+id/tankTotalTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{total.tanks}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <TextView
+                android:id="@+id/tankAttackerTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{attacker.tanks}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <TextView
+                android:id="@+id/tankDefenderTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{defender.tanks}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="10dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/grenadeImageView"
+                style="@style/Style.App.roundedImageView"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                app:srcCompat="@drawable/grenade" />
+
+            <TextView
+                android:id="@+id/grenadeTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{total.grenades}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <TextView
+                android:id="@+id/grenadeAttackerTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{attacker.grenades}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <TextView
+                android:id="@+id/grenadeDefenderTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{defender.grenades}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="10dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/flagImageView"
+                style="@style/Style.App.roundedImageView"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                app:srcCompat="@drawable/flag" />
+
+            <TextView
+                android:id="@+id/flagTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{total.flags}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <TextView
+                android:id="@+id/flagAttackerTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{attacker.flags}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <TextView
+                android:id="@+id/flagDefenderTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{defender.flags}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="10dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/starImageView"
+                style="@style/Style.App.roundedImageView"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                app:srcCompat="@drawable/star" />
+
+            <TextView
+                android:id="@+id/starTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{total.stars}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <TextView
+                android:id="@+id/starAttackerTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{attacker.stars}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <TextView
+                android:id="@+id/starDefenderTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{defender.stars}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/hitsLabelTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/hits"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <TextView
+                android:id="@+id/hitsTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{total.hits}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <TextView
+                android:id="@+id/hitsAttackerTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{attacker.hits}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <TextView
+                android:id="@+id/hitsDefenderTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{defender.hits}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        </TableRow>
+    </TableLayout>
+</layout>

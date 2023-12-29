@@ -13,4 +13,8 @@
     <string name="how_many_hits">How many hits?</string>
     <string name="save">Save</string>
     <string name="hits">Hits</string>
+    <string name="diceSideLabel">Value</string>
+    <string name="totalLabel">Total</string>
+    <string name="attackerLabel">Attacker</string>
+    <string name="defenderLabel">Defender</string>
 </resources>

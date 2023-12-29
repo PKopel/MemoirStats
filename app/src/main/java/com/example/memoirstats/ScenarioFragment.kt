@@ -1,15 +1,16 @@
 package com.example.memoirstats
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.memoirstats.databinding.FragmentScenarioBinding
-import com.example.memoirstats.model.MemoirViewModel
 import com.example.memoirstats.model.Player
+import com.example.memoirstats.model.view.CurrentViewModel
+import com.example.memoirstats.model.view.MemoirViewModel
 
 private const val ARG_SCENARIO = "scenario"
 
@@ -38,7 +39,9 @@ class ScenarioFragment : Fragment() {
     ): View {
         _binding = FragmentScenarioBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
-        binding.viewModel = viewModel
+        binding.currentResults.total = CurrentViewModel(viewModel)
+        binding.currentResults.attacker = CurrentViewModel(viewModel, Player.attackerFilter)
+        binding.currentResults.defender = CurrentViewModel(viewModel, Player.defenderFilter)
         return binding.root
     }
 
