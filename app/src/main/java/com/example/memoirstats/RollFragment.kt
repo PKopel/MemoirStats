@@ -14,7 +14,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.memoirstats.databinding.FragmentRollBinding
 import com.example.memoirstats.model.DiceSide
-import com.example.memoirstats.model.MemoirViewModel
+import com.example.memoirstats.model.view.MemoirViewModel
 import com.example.memoirstats.model.Player
 import com.example.memoirstats.model.Roll
 
@@ -47,7 +47,7 @@ class RollFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentRollBinding.inflate(inflater, container, false)
         binding.diceNumber.addTextChangedListener { text ->
             val context = activity?.baseContext!!

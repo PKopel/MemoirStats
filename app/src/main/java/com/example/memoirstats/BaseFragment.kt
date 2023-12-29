@@ -1,15 +1,15 @@
 package com.example.memoirstats
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import com.example.memoirstats.databinding.FragmentBaseBinding
-import com.example.memoirstats.model.MemoirViewModel
-import com.example.memoirstats.model.Scenario
+import com.example.memoirstats.model.Player
+import com.example.memoirstats.model.view.MemoirViewModel
+import com.example.memoirstats.model.view.TotalViewModel
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -29,19 +29,10 @@ class BaseFragment : Fragment() {
     ): View {
         _binding = FragmentBaseBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
-        binding.viewModel = viewModel
+        binding.totalResults.total = TotalViewModel(viewModel)
+        binding.totalResults.attacker = TotalViewModel(viewModel, Player.attackerFilter)
+        binding.totalResults.defender = TotalViewModel(viewModel, Player.defenderFilter)
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding.buttonNewScenario.setOnClickListener {
-            val name = "test scenario"
-            viewModel.addScenario(name)
-            val bundle = ScenarioFragment.makeBundle(name)
-            findNavController().navigate(R.id.action_BaseFragment_to_ScenarioFragment, bundle)
-        }
     }
 
     override fun onDestroyView() {

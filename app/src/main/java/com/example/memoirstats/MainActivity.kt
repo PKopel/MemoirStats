@@ -1,17 +1,18 @@
 package com.example.memoirstats
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.EditText
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
-import android.view.MenuItem
-import androidx.activity.viewModels
 import com.example.memoirstats.databinding.ActivityMainBinding
-import com.example.memoirstats.model.MemoirViewModel
+import com.example.memoirstats.model.view.MemoirViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,9 +32,21 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        binding.fab.setOnClickListener {
+            val scenarioNameEditText = EditText(this)
+
+            val scenarioNameDialog = MaterialAlertDialogBuilder(this, R.style.MaterialAlertDialog_rounded)
+                .setTitle(R.string.new_scenario)
+                .setView(scenarioNameEditText)
+                .setPositiveButton(R.string.ok) { _, _ ->
+                    val name = scenarioNameEditText.text.toString()
+                    viewModel.addScenario(name)
+                    val bundle = ScenarioFragment.makeBundle(name)
+                    navController.navigate(R.id.action_BaseFragment_to_ScenarioFragment, bundle)
+                }
+                .setNegativeButton(R.string.cancel, null)
+                .create()
+            scenarioNameDialog.show()
         }
     }
 
