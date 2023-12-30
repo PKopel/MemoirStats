@@ -31,6 +31,15 @@ class MemoirViewModel : ViewModel() {
         return true
     }
 
+    fun removeScenario(name: String): Boolean {
+        if (!scenarioMap.isInitialized || !scenarioMap.value!!.containsKey(name)) {
+            return false
+        }
+        scenarioMap.value?.remove(name)
+        realmDB.deleteScenario(name)
+        return true
+    }
+
     fun setScenario(name: String): Boolean {
         if (!scenarioMap.isInitialized || !scenarioMap.value!!.containsKey(name)) {
             return false

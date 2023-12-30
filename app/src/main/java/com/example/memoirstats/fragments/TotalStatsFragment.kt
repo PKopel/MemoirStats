@@ -28,11 +28,15 @@ class TotalStatsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentTotalStatsBinding.inflate(inflater, container, false)
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
         binding.totalResults.total = TotalViewModel(viewModel)
         binding.totalResults.attacker = TotalViewModel(viewModel, Player.Attacker.filter)
         binding.totalResults.defender = TotalViewModel(viewModel, Player.Defender.filter)
-        return binding.root
     }
 
     override fun onDestroyView() {

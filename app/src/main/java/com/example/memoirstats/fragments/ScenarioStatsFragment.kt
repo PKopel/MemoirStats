@@ -39,10 +39,7 @@ class ScenarioStatsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentScenarioStatsBinding.inflate(inflater, container, false)
-        binding.lifecycleOwner = this
-        binding.currentResults.total = CurrentViewModel(viewModel)
-        binding.currentResults.attacker = CurrentViewModel(viewModel, Player.Attacker.filter)
-        binding.currentResults.defender = CurrentViewModel(viewModel, Player.Defender.filter)
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
@@ -58,6 +55,13 @@ class ScenarioStatsFragment : Fragment() {
             val bundle = RollFragment.makeBundle(scenario, Player.Defender)
             findNavController().navigate(R.id.action_ScenarioFragment_to_RollFragment, bundle)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.currentResults.total = CurrentViewModel(viewModel)
+        binding.currentResults.attacker = CurrentViewModel(viewModel, Player.Attacker.filter)
+        binding.currentResults.defender = CurrentViewModel(viewModel, Player.Defender.filter)
     }
 
     override fun onDestroyView() {

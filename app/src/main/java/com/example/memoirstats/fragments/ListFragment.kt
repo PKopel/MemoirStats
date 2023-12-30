@@ -30,7 +30,11 @@ class ListFragment : Fragment() {
         if (view is RecyclerView) {
             with(view) {
                 layoutManager = LinearLayoutManager(context)
-                adapter = ScenarioRecyclerViewAdapter(viewModel.scenarios, findNavController())
+                adapter = ScenarioRecyclerViewAdapter(
+                    findNavController(),
+                    viewModel,
+                    context
+                )
             }
         }
         return view
