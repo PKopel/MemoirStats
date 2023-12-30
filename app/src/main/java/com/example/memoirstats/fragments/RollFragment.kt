@@ -1,4 +1,4 @@
-package com.example.memoirstats
+package com.example.memoirstats.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,15 +12,15 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.example.memoirstats.adapters.DiceAdapter
 import com.example.memoirstats.databinding.FragmentRollBinding
 import com.example.memoirstats.model.DiceSide
-import com.example.memoirstats.model.view.MemoirViewModel
 import com.example.memoirstats.model.Player
 import com.example.memoirstats.model.Roll
+import com.example.memoirstats.model.view.MemoirViewModel
 
 private const val ARG_PLAYER = "player"
 private const val ARG_SCENARIO = "scenario"
-
 /**
  * A simple [Fragment] subclass representing single dice roll.
  */

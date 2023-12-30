@@ -1,4 +1,4 @@
-package com.example.memoirstats
+package com.example.memoirstats.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
+import com.example.memoirstats.R
 import com.example.memoirstats.model.DiceSide
 
 class DiceAdapter(private val context: Context) : BaseAdapter() {

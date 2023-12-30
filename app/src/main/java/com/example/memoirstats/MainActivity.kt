@@ -1,7 +1,6 @@
 package com.example.memoirstats
 
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
 import androidx.activity.viewModels
@@ -12,6 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.memoirstats.databinding.ActivityMainBinding
+import com.example.memoirstats.fragments.ScenarioStatsFragment
 import com.example.memoirstats.model.view.MemoirViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
@@ -30,6 +30,13 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
 
         val navController = findNavController(R.id.nav_host_fragment_content_main)
+        navController.addOnDestinationChangedListener { _, dest, _ ->
+            when (dest.id) {
+                R.id.RollFragment -> binding.fab.hide()
+                else -> binding.fab.show()
+            }
+        }
+
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
@@ -38,18 +45,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
                 .setPositiveButton(R.string.ok) { _, _ ->
                     val name = scenarioNameEditText.text.toString()
                     if (viewModel.addScenario(name)) {
-                        val bundle = ScenarioFragment.makeBundle(name)
+                        val bundle = ScenarioStatsFragment.makeBundle(name)
                         navController.navigate(R.id.action_BaseFragment_to_ScenarioFragment, bundle)
                     } else {
                         nameAlreadyExistsAlert().show()

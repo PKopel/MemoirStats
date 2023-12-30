@@ -1,4 +1,4 @@
-package com.example.memoirstats
+package com.example.memoirstats.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,19 +7,19 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.memoirstats.databinding.FragmentScenarioBinding
+import com.example.memoirstats.R
+import com.example.memoirstats.databinding.FragmentScenarioStatsBinding
 import com.example.memoirstats.model.Player
 import com.example.memoirstats.model.view.CurrentViewModel
 import com.example.memoirstats.model.view.MemoirViewModel
 
 private const val ARG_SCENARIO = "scenario"
-
 /**
  * A simple [Fragment] subclass aggregating rolls for a scenario.
  */
-class ScenarioFragment : Fragment() {
+class ScenarioStatsFragment : Fragment() {
 
-    private var _binding: FragmentScenarioBinding? = null
+    private var _binding: FragmentScenarioStatsBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -31,13 +31,14 @@ class ScenarioFragment : Fragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
             scenario = it.getString(ARG_SCENARIO)!!
+            viewModel.setScenario(scenario)
         }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentScenarioBinding.inflate(inflater, container, false)
+        _binding = FragmentScenarioStatsBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.currentResults.total = CurrentViewModel(viewModel)
         binding.currentResults.attacker = CurrentViewModel(viewModel, Player.Attacker.filter)

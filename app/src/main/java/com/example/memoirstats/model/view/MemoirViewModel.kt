@@ -13,6 +13,8 @@ class MemoirViewModel : ViewModel() {
     private val scenarioMap = MutableLiveData<MutableMap<String, Scenario>>()
     private val currentScenario = MutableLiveData<Scenario>()
 
+    val scenarios: List<Scenario> get() = scenarioMap.value?.values?.toList() ?: listOf()
+
     init {
         val scenarios = realmDB.getAllScenarios()
         scenarioMap.value = scenarios.associateBy { it.name }.toMutableMap()
@@ -24,9 +26,16 @@ class MemoirViewModel : ViewModel() {
         }
         val scenario = Scenario(name)
 
-        currentScenario.value = scenario
         scenarioMap.value?.put(name, scenario)
         realmDB.addScenario(scenario)
+        return true
+    }
+
+    fun setScenario(name: String): Boolean {
+        if (!scenarioMap.isInitialized || !scenarioMap.value!!.containsKey(name)) {
+            return false
+        }
+        currentScenario.value = scenarioMap.value!![name]
         return true
     }
 
