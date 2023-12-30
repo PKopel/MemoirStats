@@ -40,43 +40,34 @@ class MemoirViewModel : ViewModel() {
         return true
     }
 
-    fun currentSide(
-        side: DiceSide,
-        filter: (Roll) -> Boolean = { true }
-    ): LiveData<Int> = MutableLiveData(
-        currentScenario.value?.rolls
-            ?.filter(filter)
-            ?.flatMap { roll -> roll.results.filter { it == side } }
-            ?.size
-            ?: 0
-    )
+    fun countSide(
+        filter: (Roll) -> Boolean = { true },
+        current: Boolean = true,
+        side: (DiceSide) -> Boolean = { true }
+    ): LiveData<Int> {
+        val rolls =
+            if (current) currentScenario.value?.rolls
+            else scenarioMap.value?.values?.flatMap { it.rolls }
+        return MutableLiveData(
+            rolls?.filter(filter)
+                ?.flatMap { it.results.filter(side) }
+                ?.size
+                ?: 0
+        )
+    }
 
-    fun currentHits(filter: (Roll) -> Boolean = { true }): LiveData<Int> =
-        MutableLiveData(
-            currentScenario.value?.rolls
-                ?.filter(filter)
+    fun countHits(
+        filter: (Roll) -> Boolean = { true },
+        current: Boolean = true
+    ): LiveData<Int> {
+        val rolls =
+            if (current) currentScenario.value?.rolls
+            else scenarioMap.value?.values?.flatMap { it.rolls }
+        return MutableLiveData(
+            rolls?.filter(filter)
                 ?.map(Roll::hits)
                 ?.sum()
                 ?: 0
         )
-
-    fun totalSide(
-        side: DiceSide,
-        filter: (Roll) -> Boolean = { true }
-    ): LiveData<Int> = MutableLiveData(
-        scenarioMap.value?.values?.flatMap { it.rolls }
-            ?.filter(filter)
-            ?.flatMap { roll -> roll.results.filter { it == side } }
-            ?.size
-            ?: 0
-    )
-
-    fun totalHits(filter: (Roll) -> Boolean = { true }): LiveData<Int> =
-        MutableLiveData(
-            scenarioMap.value?.values?.flatMap { it.rolls }
-                ?.filter(filter)
-                ?.map(Roll::hits)
-                ?.sum()
-                ?: 0
-        )
+    }
 }
