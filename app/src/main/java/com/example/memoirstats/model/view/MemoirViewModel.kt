@@ -18,18 +18,26 @@ class MemoirViewModel : ViewModel() {
         scenarioMap.value = scenarios.associateBy { it.name }.toMutableMap()
     }
 
-    fun addScenario(name: String) {
+    fun addScenario(name: String): Boolean {
+        if (!scenarioMap.isInitialized || scenarioMap.value!!.containsKey(name)) {
+            return false
+        }
         val scenario = Scenario(name)
 
         currentScenario.value = scenario
         scenarioMap.value?.put(name, scenario)
         realmDB.addScenario(scenario)
+        return true
     }
 
-    fun addRoll(roll: Roll) {
+    fun addRoll(roll: Roll): Boolean {
+        if (!currentScenario.isInitialized) {
+            return false
+        }
         val scenario = currentScenario.value!!
         scenario.rolls.add(roll)
         realmDB.updateScenario(scenario)
+        return true
     }
 
     fun currentSide(
