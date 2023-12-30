@@ -40,8 +40,8 @@ class ScenarioFragment : Fragment() {
         _binding = FragmentScenarioBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.currentResults.total = CurrentViewModel(viewModel)
-        binding.currentResults.attacker = CurrentViewModel(viewModel, Player.attackerFilter)
-        binding.currentResults.defender = CurrentViewModel(viewModel, Player.defenderFilter)
+        binding.currentResults.attacker = CurrentViewModel(viewModel, Player.Attacker.filter)
+        binding.currentResults.defender = CurrentViewModel(viewModel, Player.Defender.filter)
         return binding.root
     }
 

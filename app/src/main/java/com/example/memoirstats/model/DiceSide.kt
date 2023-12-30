@@ -7,5 +7,7 @@ enum class DiceSide(val image: Int, val p: Int = 1) {
     Tank(R.drawable.tank),
     Grenade(R.drawable.grenade),
     Star(R.drawable.star),
-    Flag(R.drawable.flag)
+    Flag(R.drawable.flag);
+
+    val filter: (DiceSide) -> Boolean = { it == this }
 }

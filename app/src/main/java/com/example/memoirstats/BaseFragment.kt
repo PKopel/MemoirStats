@@ -30,8 +30,8 @@ class BaseFragment : Fragment() {
         _binding = FragmentBaseBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.totalResults.total = TotalViewModel(viewModel)
-        binding.totalResults.attacker = TotalViewModel(viewModel, Player.attackerFilter)
-        binding.totalResults.defender = TotalViewModel(viewModel, Player.defenderFilter)
+        binding.totalResults.attacker = TotalViewModel(viewModel, Player.Attacker.filter)
+        binding.totalResults.defender = TotalViewModel(viewModel, Player.Defender.filter)
         return binding.root
     }
 

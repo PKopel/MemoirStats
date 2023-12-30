@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -33,20 +34,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         binding.fab.setOnClickListener {
-            val scenarioNameEditText = EditText(this)
-
-            val scenarioNameDialog = MaterialAlertDialogBuilder(this, R.style.MaterialAlertDialog_rounded)
-                .setTitle(R.string.new_scenario)
-                .setView(scenarioNameEditText)
-                .setPositiveButton(R.string.ok) { _, _ ->
-                    val name = scenarioNameEditText.text.toString()
-                    viewModel.addScenario(name)
-                    val bundle = ScenarioFragment.makeBundle(name)
-                    navController.navigate(R.id.action_BaseFragment_to_ScenarioFragment, bundle)
-                }
-                .setNegativeButton(R.string.cancel, null)
-                .create()
-            scenarioNameDialog.show()
+            newScenarioDialog().show()
         }
     }
 
@@ -71,4 +59,33 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
+
+    private fun newScenarioDialog(): AlertDialog {
+        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        val scenarioNameEditText = EditText(this)
+
+        val scenarioNameDialog =
+            MaterialAlertDialogBuilder(this, R.style.MaterialAlertDialog_rounded)
+                .setTitle(R.string.new_scenario)
+                .setView(scenarioNameEditText)
+                .setPositiveButton(R.string.ok) { _, _ ->
+                    val name = scenarioNameEditText.text.toString()
+                    if (viewModel.addScenario(name)) {
+                        val bundle = ScenarioFragment.makeBundle(name)
+                        navController.navigate(R.id.action_BaseFragment_to_ScenarioFragment, bundle)
+                    } else {
+                        nameAlreadyExistsAlert().show()
+                    }
+                }
+                .setNegativeButton(R.string.cancel, null)
+                .create()
+        return scenarioNameDialog
+    }
+
+    private fun nameAlreadyExistsAlert(): AlertDialog =
+        MaterialAlertDialogBuilder(this, R.style.MaterialAlertDialog_rounded)
+            .setTitle(R.string.name_already_exists)
+            .setNegativeButton(R.string.cancel, null)
+            .create()
+
 }

@@ -3,68 +3,71 @@ package com.example.memoirstats.model.view
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.memoirstats.db.RealmDatabase
 import com.example.memoirstats.model.DiceSide
 import com.example.memoirstats.model.Roll
 import com.example.memoirstats.model.Scenario
 
 class MemoirViewModel : ViewModel() {
-    private val _scenarioMap = MutableLiveData<Map<String, Scenario>>()
-    private val _currentScenario = MutableLiveData<String>()
+    private val realmDB = RealmDatabase()
+    private val scenarioMap = MutableLiveData<MutableMap<String, Scenario>>()
+    private val currentScenario = MutableLiveData<Scenario>()
 
-    fun addScenario(name: String) {
-        _currentScenario.value = name
-        val entry = Pair(name, Scenario())
-        if (_scenarioMap.isInitialized)
-            _scenarioMap.value = _scenarioMap.value?.plus(entry)
-        else
-            _scenarioMap.value = mapOf(entry)
+    init {
+        val scenarios = realmDB.getAllScenarios()
+        scenarioMap.value = scenarios.associateBy { it.name }.toMutableMap()
     }
 
-    fun addRoll(roll: Roll) {
-        val name = _currentScenario.value!!
-        _scenarioMap.value = _scenarioMap.value?.get(name)?.let {
-            it.rolls.add(roll)
-            _scenarioMap.value?.plus(Pair(name, it))
+    fun addScenario(name: String): Boolean {
+        if (!scenarioMap.isInitialized || scenarioMap.value!!.containsKey(name)) {
+            return false
         }
+        val scenario = Scenario(name)
+
+        currentScenario.value = scenario
+        scenarioMap.value?.put(name, scenario)
+        realmDB.addScenario(scenario)
+        return true
     }
 
-    fun currentSide(
-        side: DiceSide,
-        filter: (Roll) -> Boolean = { true }
-    ): LiveData<Int> = MutableLiveData(
-        _scenarioMap.value?.get(_currentScenario.value)?.rolls
-            ?.filter(filter)
-            ?.flatMap { roll -> roll.results.filter { it == side } }
-            ?.size
-            ?: 0
-    )
+    fun addRoll(roll: Roll): Boolean {
+        if (!currentScenario.isInitialized) {
+            return false
+        }
+        val scenario = currentScenario.value!!
+        scenario.rolls.add(roll)
+        realmDB.updateScenario(scenario)
+        return true
+    }
 
-    fun currentHits(filter: (Roll) -> Boolean = { true }): LiveData<Int> =
-        MutableLiveData(
-            _scenarioMap.value?.get(_currentScenario.value)?.rolls
-                ?.filter(filter)
+    fun countSide(
+        filter: (Roll) -> Boolean = { true },
+        current: Boolean = true,
+        side: (DiceSide) -> Boolean = { true }
+    ): LiveData<Int> {
+        val rolls =
+            if (current) currentScenario.value?.rolls
+            else scenarioMap.value?.values?.flatMap { it.rolls }
+        return MutableLiveData(
+            rolls?.filter(filter)
+                ?.flatMap { it.results.filter(side) }
+                ?.size
+                ?: 0
+        )
+    }
+
+    fun countHits(
+        filter: (Roll) -> Boolean = { true },
+        current: Boolean = true
+    ): LiveData<Int> {
+        val rolls =
+            if (current) currentScenario.value?.rolls
+            else scenarioMap.value?.values?.flatMap { it.rolls }
+        return MutableLiveData(
+            rolls?.filter(filter)
                 ?.map(Roll::hits)
                 ?.sum()
                 ?: 0
         )
-
-    fun totalSide(
-        side: DiceSide,
-        filter: (Roll) -> Boolean = { true }
-    ): LiveData<Int> = MutableLiveData(
-        _scenarioMap.value?.values?.flatMap { it.rolls }
-            ?.filter(filter)
-            ?.flatMap { roll -> roll.results.filter { it == side } }
-            ?.size
-            ?: 0
-    )
-
-    fun totalHits(filter: (Roll) -> Boolean = { true }): LiveData<Int> =
-        MutableLiveData(
-            _scenarioMap.value?.values?.flatMap { it.rolls }
-                ?.filter(filter)
-                ?.map(Roll::hits)
-                ?.sum()
-                ?: 0
-        )
+    }
 }
