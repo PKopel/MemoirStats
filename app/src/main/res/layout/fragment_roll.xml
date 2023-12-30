@@ -10,7 +10,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".RollFragment">
+        tools:context=".fragments.RollFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/frameLayout"
@@ -27,7 +27,8 @@
                 app:layout_constraintBottom_toTopOf="@+id/diceGroup"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:importantForAutofill="no" />
 
             <GridLayout
                 android:id="@+id/diceGroup"
@@ -50,7 +51,8 @@
                 app:layout_constraintBottom_toTopOf="@+id/save"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/diceGroup" />
+                app:layout_constraintTop_toBottomOf="@+id/diceGroup"
+                android:importantForAutofill="no" />
 
             <Button
                 android:id="@+id/save"

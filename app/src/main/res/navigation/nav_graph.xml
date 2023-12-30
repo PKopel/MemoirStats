@@ -7,18 +7,18 @@
 
     <fragment
         android:id="@+id/BaseFragment"
-        android:name="com.example.memoirstats.BaseFragment"
+        android:name="com.example.memoirstats.fragments.BaseFragment"
         android:label="@string/base_fragment_label"
-        tools:layout="@layout/fragment_base">
+        tools:layout="@layout/fragment_total_stats">
         <action
             android:id="@+id/action_BaseFragment_to_ScenarioFragment"
             app:destination="@id/ScenarioFragment" />
     </fragment>
     <fragment
         android:id="@+id/ScenarioFragment"
-        android:name="com.example.memoirstats.ScenarioFragment"
+        android:name="com.example.memoirstats.fragments.ScenarioStatsFragment"
         android:label="@string/scenario_fragment_label"
-        tools:layout="@layout/fragment_scenario">
+        tools:layout="@layout/fragment_scenario_stats">
         <action
             android:id="@+id/action_ScenarioFragment_to_RollFragment"
             app:destination="@id/RollFragment" />
@@ -28,11 +28,15 @@
     </fragment>
     <fragment
         android:id="@+id/RollFragment"
-        android:name="com.example.memoirstats.RollFragment"
+        android:name="com.example.memoirstats.fragments.RollFragment"
         android:label="@string/roll_fragment_label"
         tools:layout="@layout/fragment_roll" >
         <action
             android:id="@+id/action_RollFragment_to_ScenarioFragment"
             app:destination="@id/ScenarioFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/totalStatsFragment"
+        android:name="com.example.memoirstats.fragments.TotalStatsFragment"
+        android:label="TotalStatsFragment" />
 </navigation>
