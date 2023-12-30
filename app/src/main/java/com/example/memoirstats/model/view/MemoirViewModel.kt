@@ -3,36 +3,40 @@ package com.example.memoirstats.model.view
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.memoirstats.db.RealmDatabase
 import com.example.memoirstats.model.DiceSide
 import com.example.memoirstats.model.Roll
 import com.example.memoirstats.model.Scenario
 
 class MemoirViewModel : ViewModel() {
-    private val _scenarioMap = MutableLiveData<Map<String, Scenario>>()
-    private val _currentScenario = MutableLiveData<String>()
+    private val realmDB = RealmDatabase()
+    private val scenarioMap = MutableLiveData<MutableMap<String, Scenario>>()
+    private val currentScenario = MutableLiveData<Scenario>()
+
+    init {
+        val scenarios = realmDB.getAllScenarios()
+        scenarioMap.value = scenarios.associateBy { it.name }.toMutableMap()
+    }
 
     fun addScenario(name: String) {
-        _currentScenario.value = name
-        val entry = Pair(name, Scenario())
-        if (_scenarioMap.isInitialized)
-            _scenarioMap.value = _scenarioMap.value?.plus(entry)
-        else
-            _scenarioMap.value = mapOf(entry)
+        val scenario = Scenario(name)
+
+        currentScenario.value = scenario
+        scenarioMap.value?.put(name, scenario)
+        realmDB.addScenario(scenario)
     }
 
     fun addRoll(roll: Roll) {
-        val name = _currentScenario.value!!
-        _scenarioMap.value = _scenarioMap.value?.get(name)?.let {
-            it.rolls.add(roll)
-            _scenarioMap.value?.plus(Pair(name, it))
-        }
+        val scenario = currentScenario.value!!
+        scenario.rolls.add(roll)
+        realmDB.updateScenario(scenario)
     }
 
     fun currentSide(
         side: DiceSide,
         filter: (Roll) -> Boolean = { true }
     ): LiveData<Int> = MutableLiveData(
-        _scenarioMap.value?.get(_currentScenario.value)?.rolls
+        currentScenario.value?.rolls
             ?.filter(filter)
             ?.flatMap { roll -> roll.results.filter { it == side } }
             ?.size
@@ -41,7 +45,7 @@ class MemoirViewModel : ViewModel() {
 
     fun currentHits(filter: (Roll) -> Boolean = { true }): LiveData<Int> =
         MutableLiveData(
-            _scenarioMap.value?.get(_currentScenario.value)?.rolls
+            currentScenario.value?.rolls
                 ?.filter(filter)
                 ?.map(Roll::hits)
                 ?.sum()
@@ -52,7 +56,7 @@ class MemoirViewModel : ViewModel() {
         side: DiceSide,
         filter: (Roll) -> Boolean = { true }
     ): LiveData<Int> = MutableLiveData(
-        _scenarioMap.value?.values?.flatMap { it.rolls }
+        scenarioMap.value?.values?.flatMap { it.rolls }
             ?.filter(filter)
             ?.flatMap { roll -> roll.results.filter { it == side } }
             ?.size
@@ -61,7 +65,7 @@ class MemoirViewModel : ViewModel() {
 
     fun totalHits(filter: (Roll) -> Boolean = { true }): LiveData<Int> =
         MutableLiveData(
-            _scenarioMap.value?.values?.flatMap { it.rolls }
+            scenarioMap.value?.values?.flatMap { it.rolls }
                 ?.filter(filter)
                 ?.map(Roll::hits)
                 ?.sum()
