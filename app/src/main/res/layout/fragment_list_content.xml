@@ -5,11 +5,11 @@
     android:orientation="horizontal">
 
     <Button
-            android:id="@+id/scenario_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@android:color/primary_text_dark"
-            style="@style/Widget.MaterialComponents.Button.TextButton"/>
+        android:id="@+id/scenario_name"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_margin"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@android:color/primary_text_dark" />
 </LinearLayout>
