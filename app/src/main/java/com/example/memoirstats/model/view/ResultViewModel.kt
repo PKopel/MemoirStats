@@ -14,6 +14,8 @@ open class ResultViewModel(
         get() = memoirViewModel.countHits(filter, current).map { it.toString() }
     val dice: LiveData<String>
         get() = memoirViewModel.countSide(filter, current).map { it.toString() }
+    val ratio: LiveData<String>
+        get() = memoirViewModel.computeRatio(filter,current).map { String.format("%.1f", it) + "%" }
     val infantries: LiveData<String>
         get() = memoirViewModel.countSide(filter, current, DiceSide.Infantry.filter)
             .map { it.toString() }

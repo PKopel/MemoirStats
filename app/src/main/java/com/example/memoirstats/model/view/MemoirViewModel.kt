@@ -88,4 +88,21 @@ class MemoirViewModel : ViewModel() {
                 ?: 0
         )
     }
+
+    fun computeRatio(
+        filter: (Roll) -> Boolean = { true },
+        current: Boolean = true
+    ): LiveData<Double> {
+        val rolls =
+            if (current) currentScenario.value?.rolls
+            else scenarioMap.value?.values?.flatMap { it.rolls }
+        val hits = rolls?.filter(filter)
+            ?.map(Roll::hits)
+            ?.sum()
+            ?: 0
+        val dice = rolls?.flatMap { it.results }
+            ?.size
+            ?: 0
+        return MutableLiveData(hits * 100.0 / dice)
+    }
 }

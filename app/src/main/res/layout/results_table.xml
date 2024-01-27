@@ -338,5 +338,40 @@
                 android:text="@{defender.dice}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
         </TableRow>
+
+        <TableRow android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/ratioLabelTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/ratio"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <TextView
+                android:id="@+id/ratioTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{total.ratio}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <TextView
+                android:id="@+id/ratioAttackerTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{attacker.ratio}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <TextView
+                android:id="@+id/ratioDefenderTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@{defender.ratio}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        </TableRow>
     </TableLayout>
 </layout>

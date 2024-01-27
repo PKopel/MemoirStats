@@ -14,6 +14,7 @@
     <string name="save">Save</string>
     <string name="hits">Hits</string>
     <string name="dice">Dice</string>
+    <string name="ratio">Ratio</string>
     <string name="diceSideLabel">Value</string>
     <string name="totalLabel">Total</string>
     <string name="attackerLabel">Attacker</string>
