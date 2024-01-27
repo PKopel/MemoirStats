@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable name="model" type="com.example.memoirstats.model.view.QtyViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/removeBtn"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/custom_btn_remove"
+            android:backgroundTint="#C5BCBC"
+            android:onClick="@{() -> model.decrement()}" />
+
+        <TextView
+            android:id="@+id/quantityView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:minEms="1"
+            android:text="@{model.quantity.toString()}"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="34sp" />
+
+        <Button
+            android:id="@+id/addBtn"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/custom_btn_add"
+            android:backgroundTint="#C5BCBC"
+            android:onClick="@{() -> model.increment()}" />
+    </LinearLayout>
+</layout>

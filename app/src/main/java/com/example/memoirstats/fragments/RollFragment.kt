@@ -4,29 +4,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridLayout
-import android.widget.Spinner
-import androidx.core.view.children
-import androidx.core.view.setPadding
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.memoirstats.adapters.DiceAdapter
-import com.example.memoirstats.databinding.FragmentRollBinding
+import com.example.memoirstats.databinding.NewRollTableBinding
 import com.example.memoirstats.model.DiceSide
 import com.example.memoirstats.model.Player
 import com.example.memoirstats.model.Roll
 import com.example.memoirstats.model.view.MemoirViewModel
+import com.example.memoirstats.model.view.QtyViewModel
 
 private const val ARG_PLAYER = "player"
 private const val ARG_SCENARIO = "scenario"
+
 /**
  * A simple [Fragment] subclass representing single dice roll.
  */
 class RollFragment : Fragment() {
 
-    private var _binding: FragmentRollBinding? = null
+    private var _binding: NewRollTableBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -48,31 +44,22 @@ class RollFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentRollBinding.inflate(inflater, container, false)
-        binding.diceNumber.addTextChangedListener { text ->
-            val context = activity?.baseContext!!
-            binding.diceGroup.removeAllViews()
-            val diceNumber = text.toString().let { if (it.isBlank()) 0 else it.toInt() }
-            for (i in 0..<diceNumber) {
-                val diceSides = Spinner(context)
-                diceSides.id = 123 + i
-                diceSides.adapter = DiceAdapter(activity?.baseContext!!)
-                diceSides.background = null
-                diceSides.setPadding(10)
-                val rowSpec = GridLayout.spec(i / 2)
-                val columnSpan = if (i == diceNumber - 1)
-                    GridLayout.spec(i % 2, 1 + diceNumber % 2)
-                else
-                    GridLayout.spec(i % 2)
-                val layoutParams = GridLayout.LayoutParams(rowSpec, columnSpan)
-                binding.diceGroup.addView(diceSides, layoutParams)
-            }
-        }
+        _binding = NewRollTableBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this
+        val infantry = QtyViewModel().also { binding.infantry = it }
+        val grenade = QtyViewModel().also { binding.grenade = it }
+        val tank = QtyViewModel().also { binding.tank = it }
+        val flag = QtyViewModel().also { binding.flag = it }
+        val star = QtyViewModel().also { binding.star = it }
+        val hits = QtyViewModel().also { binding.hits = it }
+
         binding.save.setOnClickListener { _ ->
-            val results =
-                binding.diceGroup.children.map { (it as Spinner).selectedItem as DiceSide }.toList()
-            val hits = binding.hitsNumber.text.toString().let { if (it.isBlank()) 0 else it.toInt() }
-            val roll = Roll(results, hits, player)
+            val results = List(infantry.quantity.value ?: 0) { DiceSide.Infantry } +
+                    List(grenade.quantity.value ?: 0) { DiceSide.Grenade } +
+                    List(tank.quantity.value ?: 0) { DiceSide.Tank } +
+                    List(flag.quantity.value ?: 0) { DiceSide.Flag } +
+                    List(star.quantity.value ?: 0) { DiceSide.Star }
+            val roll = Roll(results, hits.quantity.value ?: 0, player)
             viewModel.addRoll(roll)
             findNavController().navigateUp()
         }

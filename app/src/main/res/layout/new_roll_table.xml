@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="infantry"
+            type="com.example.memoirstats.model.view.QtyViewModel" />
+
+        <variable
+            name="tank"
+            type="com.example.memoirstats.model.view.QtyViewModel" />
+
+        <variable
+            name="grenade"
+            type="com.example.memoirstats.model.view.QtyViewModel" />
+
+        <variable
+            name="star"
+            type="com.example.memoirstats.model.view.QtyViewModel" />
+
+        <variable
+            name="flag"
+            type="com.example.memoirstats.model.view.QtyViewModel" />
+
+        <variable
+            name="hits"
+            type="com.example.memoirstats.model.view.QtyViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:stretchColumns="*"
+            tools:context=".fragments.RollFragment">
+
+            <TableRow android:layout_marginBottom="10dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/infantryImageView"
+                        style="@style/Style.App.roundedImageView"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:srcCompat="@drawable/infantry" />
+                </LinearLayout>
+
+                <include
+                    layout="@layout/inc_dec_layout"
+                    app:model="@{infantry}" />
+
+            </TableRow>
+
+            <TableRow android:layout_marginBottom="10dp">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/tankImageView"
+                        style="@style/Style.App.roundedImageView"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:gravity="center"
+                        app:srcCompat="@drawable/tank" />
+                </LinearLayout>
+
+                <include
+                    layout="@layout/inc_dec_layout"
+                    app:model="@{tank}" />
+            </TableRow>
+
+            <TableRow android:layout_marginBottom="10dp">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/grenadeImageView"
+                        style="@style/Style.App.roundedImageView"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:gravity="center"
+                        app:srcCompat="@drawable/grenade" />
+                </LinearLayout>
+
+                <include
+                    layout="@layout/inc_dec_layout"
+                    app:model="@{grenade}" />
+            </TableRow>
+
+            <TableRow android:layout_marginBottom="10dp">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/flagImageView"
+                        style="@style/Style.App.roundedImageView"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:gravity="center"
+                        app:srcCompat="@drawable/flag" />
+                </LinearLayout>
+
+                <include
+                    layout="@layout/inc_dec_layout"
+                    app:model="@{flag}" />
+            </TableRow>
+
+            <TableRow android:layout_marginBottom="10dp">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/starImageView"
+                        style="@style/Style.App.roundedImageView"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:gravity="center"
+                        app:srcCompat="@drawable/star" />
+                </LinearLayout>
+
+                <include
+                    layout="@layout/inc_dec_layout"
+                    app:model="@{star}" />
+            </TableRow>
+
+            <TableRow android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/hitsLabelTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/hits"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                <include
+                    layout="@layout/inc_dec_layout"
+                    app:model="@{hits}" />
+            </TableRow>
+        </TableLayout>
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
