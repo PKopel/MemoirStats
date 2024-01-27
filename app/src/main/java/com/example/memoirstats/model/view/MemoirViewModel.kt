@@ -100,7 +100,8 @@ class MemoirViewModel : ViewModel() {
             ?.map(Roll::hits)
             ?.sum()
             ?: 0
-        val dice = rolls?.flatMap { it.results }
+        val dice = rolls?.filter(filter)
+            ?.flatMap { it.results }
             ?.size
             ?: 0
         return MutableLiveData(hits * 100.0 / dice)
