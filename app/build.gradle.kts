@@ -42,7 +42,7 @@ android {
 }
 
 dependencies {
-    val navVersion = "2.8.4"
+    val navVersion = "2.8.5"
 
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
