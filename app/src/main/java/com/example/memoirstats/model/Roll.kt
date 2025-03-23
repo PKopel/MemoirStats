@@ -1,9 +1,9 @@
 package com.example.memoirstats.model
 
-import io.realm.kotlin.ext.realmListOf
-import io.realm.kotlin.ext.toRealmList
-import io.realm.kotlin.types.EmbeddedRealmObject
-import io.realm.kotlin.types.RealmList
+import io.github.xilinjia.krdb.ext.realmListOf
+import io.github.xilinjia.krdb.ext.toRealmList
+import io.github.xilinjia.krdb.types.EmbeddedRealmObject
+import io.github.xilinjia.krdb.types.RealmList
 
 class RollObject : EmbeddedRealmObject {
     private var results: RealmList<String> = realmListOf()

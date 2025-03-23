@@ -3,10 +3,10 @@ package com.example.memoirstats.db
 import com.example.memoirstats.model.RollObject
 import com.example.memoirstats.model.Scenario
 import com.example.memoirstats.model.ScenarioObject
-import io.realm.kotlin.Realm
-import io.realm.kotlin.RealmConfiguration
-import io.realm.kotlin.UpdatePolicy
-import io.realm.kotlin.ext.query
+import io.github.xilinjia.krdb.Realm
+import io.github.xilinjia.krdb.RealmConfiguration
+import io.github.xilinjia.krdb.UpdatePolicy
+import io.github.xilinjia.krdb.ext.query
 
 class RealmDatabase {
     private val realm: Realm by lazy {
