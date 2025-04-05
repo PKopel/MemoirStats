@@ -43,6 +43,7 @@ android {
 
 dependencies {
     val navVersion = "2.8.9"
+    val krdbVersion = "3.2.6"
 
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("androidx.recyclerview:recyclerview:1.4.0")
@@ -52,7 +53,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.2.1")
     implementation("androidx.navigation:navigation-fragment-ktx:${navVersion}")
     implementation("androidx.navigation:navigation-ui-ktx:${navVersion}")
-    implementation("io.github.xilinjia.krdb:library-base:3.2.5")
+    implementation("io.github.xilinjia.krdb:library-base:${krdbVersion}")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
