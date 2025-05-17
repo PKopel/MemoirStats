@@ -7,6 +7,9 @@ on:
     tags:
       - "v*"
 
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Generate App Bundle
@@ -46,6 +49,9 @@ jobs:
     name: Release App Bundle
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
     steps:
       - name: Download AAB from build
         uses: actions/download-artifact@v4
