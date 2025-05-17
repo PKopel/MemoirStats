@@ -46,6 +46,8 @@ jobs:
           path: ${{steps.sign_aab.outputs.signedReleaseFile}}
 
   release:
+    permissions:
+      contents: write
     name: Release App Bundle
     needs: build
     runs-on: ubuntu-latest
