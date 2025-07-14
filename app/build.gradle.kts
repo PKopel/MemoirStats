@@ -42,7 +42,7 @@ android {
 }
 
 dependencies {
-    val navVersion = "2.9.0"
+    val navVersion = "2.9.1"
     val krdbVersion = "3.2.7"
 
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
