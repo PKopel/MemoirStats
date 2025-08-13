@@ -6,6 +6,6 @@ plugins {
 
 buildscript {
     dependencies {
-        classpath("io.github.xilinjia.krdb:gradle-plugin:3.2.7")
+        classpath("io.github.xilinjia.krdb:gradle-plugin:3.2.8")
     }
 }
