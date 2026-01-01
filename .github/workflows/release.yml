@@ -54,7 +54,7 @@ jobs:
       packages: write
     steps:
       - name: Download AAB from build
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: aab
 
