@@ -48,7 +48,7 @@ kotlin {
 
 dependencies {
     val navVersion = "2.9.7"
-    val krdbVersion = "3.2.9"
+    val krdbVersion = "3.3.2"
 
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("androidx.recyclerview:recyclerview:1.4.0")
