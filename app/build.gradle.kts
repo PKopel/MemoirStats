@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
     id("io.github.xilinjia.krdb")
 }
 
@@ -42,7 +42,8 @@ android {
 
 kotlin {
     compilerOptions {
-        jvmTarget = JvmTarget.fromTarget("17")
+        languageVersion = KotlinVersion.KOTLIN_2_3
+        jvmTarget = JvmTarget.JVM_17
     }
 }
 
