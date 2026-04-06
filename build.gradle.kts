@@ -5,7 +5,7 @@ plugins {
 
 buildscript {
     dependencies {
-        classpath("io.github.xilinjia.krdb:gradle-plugin:3.3.2")
+        classpath("io.github.xilinjia.krdb:gradle-plugin:3.3.3")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.10")
     }
 }
